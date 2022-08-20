@@ -1,0 +1,17 @@
+version: '3.4'
+
+services:
+  keeptrack:
+    image: keeptrack
+    build:
+      context: keeptrack
+      dockerfile: ./Dockerfile
+    environment:
+      NODE_ENV: production
+    # Include WATCHPACK_POLLING and volumnes to allow hot-reload
+      WATCHPACK_POLLING: "true"
+    volumes:
+      - /app/node_modules
+      - ./keeptrack:/app
+    ports:
+      - 3000:3000
