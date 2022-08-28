@@ -15,5 +15,5 @@ form {
   min-width: 300px;
 }
 
-@import '../node_modules/mini.css/dist/mini-dark.css'
+@import '../node_modules/mini.css/dist/mini-default.css'
 
