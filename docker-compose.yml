@@ -25,9 +25,7 @@ services:
     # Include WATCHPACK_POLLING and volumnes to allow hot-reload
       WATCHPACK_POLLING: "true"
     volumes:
-      - /app/node_modules
-      - ./server:/app
+      - /server/node_modules
+      - ./server:/data
     ports:
-      - 5000:5000
-    depends_on:
-      - keeptrack
+      - 3001:3001
