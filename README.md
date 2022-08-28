@@ -224,3 +224,62 @@ function ProjectList({ projects }: ProjectListProps) {
 export default ProjectList;
 ```
 
+8. ### Create another reusable component
+
+Added a `src\projects\ProjectCard.tsx` component.
+
+```ts
+import { Project } from './Project';
+import React from 'react';
+
+function formatDescription(description: string): string {
+  return description.substring(0, 60) + '...';
+}
+
+interface ProjectCardProps {
+  project: Project;
+}
+
+function ProjectCard(props: ProjectCardProps) {
+  const { project } = props;
+  return (
+    <div className="card">
+      <img src={project.imageUrl} alt={project.name} />
+      <section className="section dark">
+        <h5 className="strong">
+          <strong>{project.name}</strong>
+        </h5>
+        <p>{formatDescription(project.description)}</p>
+        <p>Budget : {project.budget.toLocaleString()}</p>
+      </section>
+    </div>
+  );
+}
+
+export default ProjectCard;
+```
+
+Render the reusable component in `src\projects\ProjectList.tsx` (replacing the `<div className="card">` with `<ProjectCard project={project}`>).
+
+9. ### Responding to an Event
+
+Added an edit button in `ProjectCard.tsx`:
+
+```ts
+<button className=" bordered">
+  <span className="icon-edit "></span>
+  Edit
+</button>
+```
+
+With a handler and event trigger:
+
+```ts
+const handleEditClick = (projectBeingEdited: Project) => {
+  console.log(projectBeingEdited);
+};
+return(
+  ...
+  <button onClick = {() => {handleEditClick(project)}}Edit</button>
+)
+```
